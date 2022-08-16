@@ -36,18 +36,18 @@ Categories:
       - name: R1
         Elements:
           - name: 'rpm1'
-            value: '0'
+            value: '1'
             Help: R1 rpm1 help text
           - name: 'rpm2'
-            value: '0'
+            value: '2'
             Help: R1 rpm2 help text
       - name: R2
         Elements:
           - name: 'rpm1'
-            value: '0'
+            value: '3'
             Help: R2 rpm1 help text
           - name: 'rpm2'
-            value: '0'
+            value: '4'
             Help: R2 rpm2 help text
             
         
