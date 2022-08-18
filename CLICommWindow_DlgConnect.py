@@ -4,7 +4,6 @@ from serial.tools.list_ports import comports
 
 class CLICommWindow_DlgConnect(QtWidgets.QDialog):
   def __init__(self, aParent):
-    #super(CLICommWindow_Connect, self).__init__(aParent)
     QtWidgets.QDialog.__init__(self)
     self.parent = aParent
     self.setModal(True)

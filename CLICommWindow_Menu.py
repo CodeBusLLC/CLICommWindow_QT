@@ -1,5 +1,7 @@
 from PySide6 import QtCore, QtWidgets, QtGui
 import CLICommWindow_DlgConnect
+import CLICommWindow_DlgSearch
+import CLICommWindow_ReceivedText
 
 class CLICommWindow_Menu():
   def __init__(self, aOwner):
@@ -26,6 +28,16 @@ class CLICommWindow_Menu():
     actConnect.triggered.connect( self.owner.doExit )
     filemenu.addAction( actConnect )
 
+    searchmenu = self.menu.addMenu( "Search" )
+    
+    act_ = QtGui.QAction( "Element Tree", aOwner )
+    act_.triggered.connect( self.doTree )
+    searchmenu.addAction( act_ )
+    
+    act_ = QtGui.QAction( "Received Text", aOwner )
+    act_.triggered.connect( self.doRecvd )
+    searchmenu.addAction( act_ )
+    
   def doConnect(self):
     dlg_ = CLICommWindow_DlgConnect.CLICommWindow_DlgConnect(self)
     if 0 == dlg_.exec() and dlg_.strPortSelected:
@@ -36,4 +48,10 @@ class CLICommWindow_Menu():
 
   def doReconnect(self):
     pass
+
+  def doTree(self):
+    pass
+
+  def doRecvd(self):
+    dlg_ = CLICommWindow_DlgSearch.CLICommWindow_DlgSearch(self.owner, CLICommWindow_ReceivedText.ReceivedText.inst )
     
