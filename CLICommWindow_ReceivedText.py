@@ -14,7 +14,7 @@ class ReceivedText(QtWidgets.QTextEdit):
     curs_.movePosition(QtGui.QTextCursor.End)
     curs_.insertText(aString)
 
-  def doFind(self,aString, aNext):
+  def doSearch(self,aString, aNext):
     if False == aNext:
       cursor_ = self.textCursor()
       cursor_.movePosition( QtGui.QTextCursor.Start )

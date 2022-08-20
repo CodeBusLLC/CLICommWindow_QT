@@ -2,6 +2,7 @@ from PySide6 import QtCore, QtWidgets, QtGui
 import CLICommWindow_DlgConnect
 import CLICommWindow_DlgSearch
 import CLICommWindow_ReceivedText
+import CLICommWindow_ElementTree
 
 class CLICommWindow_Menu():
   def __init__(self, aOwner):
@@ -31,11 +32,11 @@ class CLICommWindow_Menu():
     searchmenu = self.menu.addMenu( "Search" )
     
     act_ = QtGui.QAction( "Element Tree", aOwner )
-    act_.triggered.connect( self.doTree )
+    act_.triggered.connect( self.doSearchTree )
     searchmenu.addAction( act_ )
     
     act_ = QtGui.QAction( "Received Text", aOwner )
-    act_.triggered.connect( self.doRecvd )
+    act_.triggered.connect( self.doSearchRecvd )
     searchmenu.addAction( act_ )
     
   def doConnect(self):
@@ -49,9 +50,9 @@ class CLICommWindow_Menu():
   def doReconnect(self):
     pass
 
-  def doTree(self):
-    pass
+  def doSearchTree(self):
+    dlg_ = CLICommWindow_DlgSearch.CLICommWindow_DlgSearch(self.owner, CLICommWindow_ElementTree.ElementTree.inst )
 
-  def doRecvd(self):
+  def doSearchRecvd(self):
     dlg_ = CLICommWindow_DlgSearch.CLICommWindow_DlgSearch(self.owner, CLICommWindow_ReceivedText.ReceivedText.inst )
     

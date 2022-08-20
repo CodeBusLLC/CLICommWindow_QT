@@ -2,9 +2,12 @@ from PySide6 import QtCore, QtWidgets, QtGui
 import CLICommWindow_Yaml
 
 class ElementTree(QtWidgets.QTreeWidget):
+  inst = None
   def __init__(self, aLayout, aOwner):
     super().__init__()
+    ElementTree.inst = self
     self.owner = aOwner
+    self.found = None
     columns_ = ("Category", "Group", "Element", "Help")
     colWidth_=( 100, 120, 160, 350 )
     l_ = QtWidgets.QHBoxLayout()
@@ -72,4 +75,23 @@ class ElementTree(QtWidgets.QTreeWidget):
     ret_ = self._getData(self.popupItem)
     if ret_:
       self.owner.entrybar.setValue( ret_ )
-    
+  
+  def _searchChildren(self, aItem, aString):
+    if aItem.childCount() > 0:
+      for idx_ in range(0, aItem.childCount()):
+        child_ = aItem.child(idx_)
+        if child_.text(2).__contains__( aString ):
+          self.found = child_
+          print( child_.text(2) )
+          break
+        self._searchChildren( child_, aString )
+  
+  def doSearch(self,aString, aNext):
+    if False == aNext:
+      for idx_ in range(0, self.topLevelItemCount()):
+        print( self.topLevelItem(idx_).text(0) )
+        self._searchChildren( self.topLevelItem(idx_), aString )
+        if self.found:
+          break
+        
+
